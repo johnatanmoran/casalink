@@ -7,4 +7,4 @@ const staticResourcesMiddleware = (req, res) => {
     });
 };
 
-module.exports = staticResourcesMiddleware;
+export default staticResourcesMiddleware;

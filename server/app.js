@@ -44,9 +44,6 @@ app.get('/', async (req, res) => {
     }
 });
 
-// Middleware para rutas no encontradas
-app.use(notFoundMiddleware);
-
 // Middleware de gestión de errores
 app.use((err, req, res) => {
     console.error(err.stack);
@@ -69,5 +66,8 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto http://localhost:${PORT}`);
 });
+
+// Middleware para rutas no encontradas
+app.use(notFoundMiddleware);
 
 export default app;
