@@ -4,8 +4,9 @@ import cors from 'cors';
 import express from 'express';
 import getPool from './src/db/getPool.js';
 import jsonMiddleware from './src/middlewares/jsonMiddleware.js';
+import notFoundMiddleware from './src/middlewares/notFoundMiddleware.js';
 
-import usersRoutes from './src/routes/user/usersRoutes.js';
+import usersRoutes from './src/routes/users.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -43,10 +44,6 @@ app.get('/', async (req, res) => {
     }
 });
 
-const notFoundMiddleware = require('./middleware/notFoundMiddleware');
-
-// Rutas aquí...
-
 // Middleware para rutas no encontradas
 app.use(notFoundMiddleware);
 
@@ -58,8 +55,6 @@ app.use((err, req, res) => {
         message: 'Error interno del servidor',
     });
 });
-
-module.exports = app;
 
 //Middleware de gestión de errores
 // eslint-disable-next-line no-unused-vars
@@ -74,3 +69,5 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto http://localhost:${PORT}`);
 });
+
+export default app;
