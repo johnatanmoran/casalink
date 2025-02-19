@@ -1,5 +1,6 @@
 import updateContractStatusModel from '../../models/contracts/updateContractStatusModel';
 
+// Controlador para actualizar el estado del contrato de un casero
 const updateContractStatusController = async (req, res, next) => {
 	try {
 		const { contractId } = req.params; // ID del contrato
