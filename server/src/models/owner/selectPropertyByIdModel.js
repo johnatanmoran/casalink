@@ -24,7 +24,7 @@ const selectPropertyByIdModel = async (propertyId) => {
         u.name,
         u.lastName,
         u.avatarUrl,
-        //COALESCE(AVG(r.rating),0) AS avgRating
+        COALESCE(AVG(r.rating),0) AS avgRating
         
          FROM properties p
          JOIN users u ON p.ownerId = u.id
