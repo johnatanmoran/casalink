@@ -11,6 +11,7 @@ import requestVisitRoutes from './src/routes/user/requestVisitRoutes.js';
 import reviewsRoutes from './src/routes/reviews/reviewsRoutes.js';
 import fileUploadRoute from './src/routes/owner/fileUploadRoute.js';
 import propertiesRoutes from './src/routes/properties/propertiesRoutes.js';
+import contractsRoutes from './src/routes/contracts/contractsRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -30,6 +31,8 @@ app.use('/api/solicitudes', requestVisitRoutes); // Ruta para solicitar visita
 app.use('/api/reviews', reviewsRoutes); // Rutas de valoraciones
 app.use('/api', fileUploadRoute);
 app.use('/api', propertiesRoutes);
+app.use('/api', contractsRoutes); // Rutas de contratos de usuarios para caseros
+
 /*// Ruta de prueba para recibir JSON
 app.post('/api/test-json', (req, res) => {
 	try {
