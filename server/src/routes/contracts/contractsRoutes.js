@@ -1,10 +1,22 @@
 import express from 'express';
-import usersController from '../../controllers/user/usersController.js';
+//import usersController from '../../controllers/user/usersController.js';
+import authUserMiddleware from '../../middlewares/authUserMiddleware.js';
+import updateContractStatusController from '../../controllers/contracts/updateContractStatusController.js';
 
 const router = express.Router();
-// Solicitud de visita (contrato valido)
+
+/*// Solicitud de visita (contrato valido)
 router.post('/contracts', usersController);
 // Lista de solicitudes de alquiler
 router.get('/contracts', usersController);
 // Aceptar/Rechazar solicitud (dueño)
-router.patch('/contracts/:id', usersController);
+router.patch('/contracts/:id', usersController);*/
+
+// Endpoint para aceptar/rechazar una visita/alquiler (casero)
+router.patch(
+	'/contracts/:contractId/status',
+	authUserMiddleware,
+	updateContractStatusController
+);
+
+export default router;
