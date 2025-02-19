@@ -10,11 +10,7 @@ import process from 'process';
 import requestVisitRoutes from './src/routes/user/requestVisitRoutes.js';
 import reviewsRoutes from './src/routes/reviews/reviewsRoutes.js';
 import fileUploadRoute from './src/routes/owner/fileUploadRoute.js';
-<<<<<<< HEAD
-import contractsRoutes from './src/routes/contracts/contractsRoutes.js';
-=======
 import propertiesRoutes from './src/routes/properties/propertiesRoutes.js';
->>>>>>> main
 
 const app = express();
 const PORT = process.env.PORT || 3000;
