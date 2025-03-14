@@ -26,44 +26,62 @@ const SearchBar = ({ onSearchComplete, className = '' }) => {
 		<>
 			<form
 				id="search-form"
-				className={`bg-white rounded-full flex justify-between p-1 w-full h-16 ${className}`}
+				className={`bg-white flex items-center justify-between rounded-full px-0 py-0 w-full max-w-4xl shadow-md mx-auto ${className}`}
 				onSubmit={handleSearch}
 			>
+				{/* Campo: Localidad (Ahora con más espacio) */}
 				<input
 					id="locality"
 					name="locality"
 					type="text"
-					placeholder="Localidad"
-					className="py-2 px-4 outline-none rounded-l-full w-full"
+					placeholder="📍 Localidad"
+					className="py-3 px-4 outline-none flex-1 rounded-l-full"
 					onChange={handleChange}
 					value={filters.locality}
 				/>
-				<input
-					id="bathrooms"
-					name="bathrooms"
-					type="number"
-					placeholder="🚽"
-					className="hidden py-2 px-4 outline-none md:w-16 md:block"
-					onChange={handleChange}
-					value={filters.bathrooms}
-				/>
-				<input
-					id="bedrooms"
-					name="bedrooms"
-					type="number"
-					placeholder="🛏️"
-					className="hidden md:block py-2 px-4 outline-none md:w-16"
-					onChange={handleChange}
-					value={filters.bedrooms}
-				/>
-				<button
-					type="submit"
-					className="bg-[#ff6666] rounded-full aspect-square text-white hover:bg-[#66ffff] hover:text-[#000033] transition-colors transform hover:scale-95 duration-200 p-4"
-				>
-					<span id="search-icon">
-						<FaSearch className="w-full" />
-					</span>
-				</button>
+
+				{/* Contenedor de filtros en línea */}
+				<div className="hidden md:flex items-center bg-gray-100 border-2 border-[#ffff] rounded-full gap-4">
+					{/* Baños */}
+					<div className="flex items-center gap-2 pl-2">
+						{' '}
+						{/* Espaciado a la izquierda */}
+						<span className="text-gray-500 text-lg">🚽</span>
+						<input
+							id="bathrooms"
+							name="bathrooms"
+							type="number"
+							min="0"
+							placeholder="Baños"
+							className="w-16 text-center bg-transparent outline-none placeholder-gray-500"
+							onChange={handleChange}
+							value={filters.bathrooms}
+						/>
+					</div>
+
+					{/* Habitaciones */}
+					<div className="flex items-center gap-2">
+						<span className="text-gray-500 text-lg">🛏️</span>
+						<input
+							id="bedrooms"
+							name="bedrooms"
+							type="number"
+							min="0"
+							placeholder="Habitaciones"
+							className="w-27 text-center bg-transparent outline-none placeholder-gray-500"
+							onChange={handleChange}
+							value={filters.bedrooms}
+						/>
+					</div>
+
+					{/* Botón de búsqueda */}
+					<button
+						type="submit"
+						className="p-4 bg-[#ff6666] text-white rounded-full hover:bg-[#E05555] transition duration-300"
+					>
+						<FaSearch className="w-5 h-5" />
+					</button>
+				</div>
 			</form>
 		</>
 	);

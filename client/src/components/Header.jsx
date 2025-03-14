@@ -52,25 +52,46 @@ const Header = () => {
 				</Link>
 			</h1>
 			<nav className="flex items-center">
-				{/* Botón hamburguesa */}
-				<button
-					className="md:hidden flex flex-col space-y-1"
-					onClick={() => setIsOpen(!isOpen)}
-				>
-					<span
-						className={`block w-8 h-1 bg-[#000033] transition-transform ${
-							isOpen ? 'rotate-45 translate-y-2' : ''
-						}`}
-					></span>
-					<span
-						className={`block w-8 h-1 bg-[#000033] ${isOpen ? 'opacity-0' : ''}`}
-					></span>
-					<span
-						className={`block w-8 h-1 bg-[#000033] transition-transform ${
-							isOpen ? '-rotate-45 -translate-y-2' : ''
-						}`}
-					></span>
-				</button>
+				{/* Contenedor de avatar + menú hamburguesa en móvil */}
+				<div className="flex items-center space-x-3 md:hidden">
+					{/* Avatar SOLO en móvil */}
+					{authUser && (
+						<Link
+							to={`/profile/${authUser.id}`}
+							className="flex items-center"
+						>
+							{authUser?.avatarUrl ? (
+								<img
+									src={`${VITE_API_URL}/static/uploads/avatars/${authUser.avatarUrl}`}
+									alt="Avatar del usuario"
+									className="size-10 rounded-full object-cover"
+								/>
+							) : (
+								<AvatarIcon className="size-12" />
+							)}
+						</Link>
+					)}
+					{/* Botón hamburguesa */}
+					<button
+						className="md:hidden flex flex-col space-y-1"
+						onClick={() => setIsOpen(!isOpen)}
+					>
+						<span
+							className={`block w-8 h-1 bg-[#000033] transition-transform ${
+								isOpen ? 'rotate-45 translate-y-2' : ''
+							}`}
+						></span>
+						<span
+							className={`block w-8 h-1 bg-[#000033] ${isOpen ? 'opacity-0' : ''}`}
+						></span>
+						<span
+							className={`block w-8 h-1 bg-[#000033] transition-transform ${
+								isOpen ? '-rotate-45 -translate-y-2' : ''
+							}`}
+						></span>
+					</button>
+				</div>
+				{/* Menú de navegación */}
 				<ul
 					className={`space-y-8 items-center md:space-y-0 md:text-sm md:top-0 absolute left-0 w-full text-center p-8 transition-all duration-300 ease-in-out z-50
 					${isOpen ? 'opacity-100 text-2xl bg-[#ff6666] top-20 h-full' : 'opacity-0 pointer-events-none'}
@@ -172,7 +193,7 @@ const Header = () => {
 						<Link to={`/profile/${authUser.id}`}>
 							<div
 								id="user-avatar"
-								className="flex items-center justify-center"
+								className="hidden md:flex items-center justify-center"
 							>
 								{authUser?.avatarUrl ? (
 									<div
